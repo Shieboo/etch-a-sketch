@@ -1,16 +1,20 @@
 const root = document.documentElement;
-const grid = document.querySelector('#grid');
+const showGridSize = document.querySelector('#grid-size');
 const reset = document.querySelector('#reset');
+const grid = document.querySelector('#grid');
 const themeSelectors = document.querySelectorAll('.theme > div');
 
-var gridSize = 4;
+var gridSize = 8;
 
 themeSelectors.forEach((selector) => {
   selector.addEventListener('click', themeChanger);
 });
 
 reset.addEventListener('click', () => {
-  console.log('reset opacity');
+  let cells = document.querySelectorAll('#grid > div');
+  cells.forEach((cell) => {
+    cell.style.opacity = 0.0;
+  });
 });
 
 function themeChanger(e) {
