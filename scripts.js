@@ -1,11 +1,28 @@
-var gridSize = 16;
-
+const root = document.documentElement;
 const grid = document.querySelector('#grid');
 const reset = document.querySelector('#reset');
+const themeSelectors = document.querySelectorAll('.theme > div');
+
+var gridSize = 4;
+
+themeSelectors.forEach((selector) => {
+  selector.addEventListener('click', themeChanger);
+});
 
 reset.addEventListener('click', () => {
   console.log('reset opacity');
 });
+
+function themeChanger(e) {
+  switch (e.target.id) {
+    case 'pink':
+      root.style.setProperty('--color', '#ff77a2');
+      break;
+    case 'blue':
+      root.style.setProperty('--color', '#77c4ff');
+      break;
+  }
+}
 
 function opacityChanger(e) {
   if (e.target.style.opacity < 1.0) {

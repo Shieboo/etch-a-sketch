@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
+:root {
+  --color: #ff77a2;
+  --pink: #ff77a2;
+  --blue: #77c4ff;
+}
+
 body {
   font-family: 'Indie Flower', cursive, sans-serif;
   background-color: #fff;
@@ -9,7 +15,7 @@ body {
 }
 
 .title {
-  background-color: #ff77a2;
+  background-color: var(--color);
   color: #fff;
   font-size: 4rem;
   letter-spacing: .2rem;
@@ -21,8 +27,8 @@ body {
   display: grid;
   grid-template-columns: auto auto;
   margin: .5rem auto;
-  max-width: 28rem;
-  color: #ff77a2;
+  max-width: 32rem;
+  color: var(--color);
   font-size: 2rem;
   font-weight: bold;
 }
@@ -45,12 +51,30 @@ main {
   width: 512px;
   height: 512px;
   margin: 0 auto;
-  border: 1px solid pink;
+  border: 1px solid var(--color);
 }
-div {
+main>div {
   float: left;
   box-sizing: border-box;
-  background-color: #ff77a2;
+  background-color: var(--color);
   opacity: 0.0;
-  border: 1px solid pink;
+  border: 1px solid var(--color);
+}
+.theme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.theme>div {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: .5rem;
+  cursor: pointer;
+}
+.theme>#pink {
+  background-color: var(--pink);
+}
+.theme>#blue {
+  background-color: var(--blue);
 }
