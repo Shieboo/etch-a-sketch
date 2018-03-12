@@ -1,21 +1,38 @@
 const root = document.documentElement;
 const showGridSize = document.querySelector('#grid-size');
 const reset = document.querySelector('#reset');
-const grid = document.querySelector('#grid');
+const container = document.querySelector('#grid');
 const themeSelectors = document.querySelectorAll('.theme > div');
 
-var gridSize = 8;
+reset.addEventListener('click', resetGrid);
+
+showGridSize.addEventListener('click', () => {
+  let size = prompt('How many squares per side do you want?');
+  showGridSize.textContent = 'grid-size: '+ size;
+  deleteGrid();
+  draw(size);
+});
 
 themeSelectors.forEach((selector) => {
   selector.addEventListener('click', themeChanger);
 });
 
-reset.addEventListener('click', () => {
+function resetGrid() {
   let cells = document.querySelectorAll('#grid > div');
   cells.forEach((cell) => {
     cell.style.opacity = 0.0;
   });
-});
+}
+
+function deleteGrid() {
+  Element.prototype.removeAll = function () {
+    while (this.firstChild) {
+      this.removeChild(this.firstChild);
+    }
+    return this;
+  }
+  container.removeAll();
+}
 
 function themeChanger(e) {
   switch (e.target.id) {
@@ -34,16 +51,19 @@ function opacityChanger(e) {
   }
 }
 
-for (let y = 0; y < gridSize; y++) {
-  for (let x = 0; x < gridSize; x++) {
-    let cellSize = 512 / gridSize;
-    let cell = document.createElement('div');
+function draw(grid) {
+  for (let y = 0; y < grid; y++) {
+    for (let x = 0; x < grid; x++) {
+      let cellSize = 512 / grid;
+      let cell = document.createElement('div');
 
-    cell.style.opacity = 0.0;
-    cell.style.width = cellSize + 'px';
-    cell.style.height = cellSize + 'px';
-    grid.appendChild(cell);
+      cell.style.opacity = 0.0;
+      cell.style.width = cellSize + 'px';
+      cell.style.height = cellSize + 'px';
+      container.appendChild(cell);
 
-    cell.addEventListener('mouseover', opacityChanger);
-  }
-};
+      cell.addEventListener('mouseover', opacityChanger);
+    }
+  };
+}
+draw(12);
