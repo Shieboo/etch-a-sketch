@@ -45,6 +45,7 @@ body {
   text-align: right;
   padding-left: 1rem;
   padding-right: 1rem;
+  cursor: pointer;
 }
 
 main {
